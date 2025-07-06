@@ -1,0 +1,110 @@
+### ✅ Valid: Create a new price update
+POST http://localhost:3000/api/price-updates
+Content-Type: application/json
+
+{
+  "metalId": "680bc32e17022d27e5c82fb6",
+  "materialId": "680bc36117022d27e5c82fbc",
+  "price": 1234.567
+}
+
+###
+
+### ❌ Invalid: Missing price
+POST http://localhost:3000/api/price-updates
+Content-Type: application/json
+
+{
+   "metalId": "680bc32e17022d27e5c82fb6",
+  "materialId": "680bc36117022d27e5c82fbc"
+}
+
+###
+
+### ❌ Invalid: Price is negative
+POST http://localhost:3000/api/price-updates
+Content-Type: application/json
+
+{
+  "metalId": "680bc32e17022d27e5c82fb6",
+  "materialId": "680bc36117022d27e5c82fbc",
+  "price": -99
+}
+
+###
+
+### ❌ Invalid: Malformed ObjectId
+POST http://localhost:3000/api/price-updates
+Content-Type: application/json
+
+{
+  "metalId": "invalid-id",
+  "materialId": "another-invalid-id",
+  "price": 1500
+}
+
+###
+
+### ✅ Valid: Get all price updates
+GET http://localhost:3000/api/price-updates
+Content-Type: application/json
+
+###
+
+### ✅ Valid: Get a price update by ID 
+### i have not implemented this
+GET http://localhost:3000/api/price-updates/660fa1cbe4c987123456abcd
+Content-Type: application/json
+
+###
+
+### ❌ Invalid: Get with malformed ID
+### i have not implemented this
+GET http://localhost:3000/api/price-updates/bad-id
+Content-Type: application/json
+
+###
+
+### ✅ Valid: Update a price update
+PATCH http://localhost:3000/api/price-updates/680bc4ab17022d27e5c82fc6
+Content-Type: application/json
+
+{
+  "metalId": "680bc32e17022d27e5c82fb6",
+  "materialId": "680bc36117022d27e5c82fbc",
+  "price": 900
+}
+
+###
+
+### ❌ Invalid: PATCH with price as string
+PATCH http://localhost:3000/api/price-updates/680bc4ab17022d27e5c82fc6
+Content-Type: application/json
+
+{
+  "price": "1000"
+}
+
+###
+
+### ❌ Invalid: PATCH with invalid ObjectId
+PATCH http://localhost:3000/api/price-updates/invalid-id
+Content-Type: application/json
+
+{
+  "price": 100
+}
+
+###
+
+### ✅ Valid: DELETE a price update
+DELETE http://localhost:3000/api/price-updates/680bc4ab17022d27e5c82fc6
+Content-Type: application/json
+
+###
+
+### ❌ Invalid: DELETE with malformed ID
+DELETE http://localhost:3000/api/price-updates/invalid-id
+Content-Type: application/json
+
+###

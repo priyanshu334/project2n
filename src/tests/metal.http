@@ -1,0 +1,123 @@
+### ✅ Valid: POST a new metal
+POST http://localhost:3000/api/metals
+Content-Type: application/json
+
+{
+  "metalName": "aluminium"
+}
+
+###
+
+### ✅ Valid: GET all metals
+GET http://localhost:3000/api/metals
+Content-Type: application/json
+
+###
+
+### ❌ Invalid: POST with metalName as number
+POST http://localhost:3000/api/metals
+Content-Type: application/json
+
+{
+  "metalName": 123
+}
+
+###
+
+### ❌ Invalid: POST with metalName as boolean
+POST http://localhost:3000/api/metal
+Content-Type: application/json
+
+{
+  "metalName": true
+}
+
+###
+
+### ❌ Invalid: POST with empty string
+POST http://localhost:3000/api/metal
+Content-Type: application/json
+
+{
+  "metalName": ""
+}
+
+###
+
+### ❌ Invalid: POST with short metalName (less than 3 characters)
+POST http://localhost:3000/api/metal
+Content-Type: application/json
+
+{
+  "metalName": "Al"
+}
+
+###
+
+### ❌ Invalid: POST with missing field
+POST http://localhost:3000/api/metal
+Content-Type: application/json
+
+{}
+
+###
+
+### ❌ Invalid: POST with extra unexpected field
+POST http://localhost:3000/api/metal
+Content-Type: application/json
+
+{
+  "metalName": "Copper",
+  "extraField": "NotAllowed"
+}
+
+###
+
+### ❌ Invalid: POST with extra unexpected field
+### ✅ Valid: DELETE Metal by ID
+DELETE http://localhost:3000/api/metal/68091ef53549fbfa209e6888
+Content-Type: application/json
+
+### ❌ Invalid: DELETE Metal with non-existing or malformed ID
+DELETE http://localhost:3000/api/metal/invalid-id
+Content-Type: application/json
+
+### ✅ Valid: PATCH metal by ID
+PATCH http://localhost:3000/api/metal/68091ef53549fbfa209e6888
+Content-Type: application/json
+
+{
+  "metalName": "updatedGold"
+}
+
+### ❌ Invalid: PATCH with too short name
+PATCH http://localhost:3000/api/metal/68091ef53549fbfa209e6888
+Content-Type: application/json
+
+{
+  "metalName": "Au"
+}
+
+### ❌ Invalid: PATCH with missing metalName
+PATCH http://localhost:3000/api/metal/68091ef53549fbfa209e6888
+Content-Type: application/json
+
+{
+}
+
+### ❌ Invalid: PATCH with malformed JSON
+PATCH http://localhost:3000/api/metal/68091ef53549fbfa209e6888
+Content-Type: application/json
+
+{
+  "metalName": "Gold"
+  // missing comma or extra text
+}
+
+### ❌ Invalid: PATCH with bad ObjectId
+PATCH http://localhost:3000/api/metal/invalid-object-id
+Content-Type: application/json
+
+{
+  "metalName": "NewName"
+}

@@ -1,0 +1,122 @@
+### ✅ Valid: POST a new material
+POST http://localhost:3000/api/material
+Content-Type: application/json
+
+{
+  "materialName": "22 KT GOLD"
+}
+
+###
+
+### ✅ Valid: GET all materials
+GET http://localhost:3000/api/material
+Content-Type: application/json
+
+###
+
+### ❌ Invalid: POST with materialName as number
+POST http://localhost:3000/api/material
+Content-Type: application/json
+
+{
+  "materialName": 123
+}
+
+###
+
+### ❌ Invalid: POST with materialName as boolean
+POST http://localhost:3000/api/material
+Content-Type: application/json
+
+{
+  "materialName": true
+}
+
+###
+
+### ❌ Invalid: POST with empty string
+POST http://localhost:3000/api/material
+Content-Type: application/json
+
+{
+  "materialName": ""
+}
+
+###
+
+### ❌ Invalid: POST with short materialName (less than 3 characters)
+POST http://localhost:3000/api/material
+Content-Type: application/json
+
+{
+  "materialName": "Al"
+}
+
+###
+
+### ❌ Invalid: POST with missing field
+POST http://localhost:3000/api/material
+Content-Type: application/json
+
+{}
+
+###
+
+### ❌ Invalid: POST with extra unexpected field
+POST http://localhost:3000/api/material
+Content-Type: application/json
+
+{
+  "materialName": "Copper",
+  "extraField": "NotAllowed"
+}
+
+###
+
+### ✅ Valid: DELETE material by ID
+DELETE http://localhost:3000/api/material/680a1952d705961604624f8a
+Content-Type: application/json
+
+### ❌ Invalid: DELETE material with non-existing or malformed ID
+DELETE http://localhost:3000/api/material/invalid-id
+Content-Type: application/json
+
+### ✅ Valid: PATCH material by ID
+PATCH http://localhost:3000/api/material/680a16dfd705961604624f85
+Content-Type: application/json
+
+{
+  "materialName": "RoseGold"
+}
+
+### ❌ Invalid: PATCH with too short name
+PATCH http://localhost:3000/api/material/680a16dfd705961604624f85
+Content-Type: application/json
+
+{
+  "materialName": "Au"
+}
+
+### ❌ Invalid: PATCH with missing materialName
+PATCH http://localhost:3000/api/material/68091ef53549fbfa209e6888
+Content-Type: application/json
+
+{
+}
+
+### ❌ Invalid: PATCH with malformed JSON
+PATCH http://localhost:3000/api/material/68091ef53549fbfa209e6888
+Content-Type: application/json
+
+{
+  "materialName": "Gold"
+  // missing comma or extra text
+}
+
+### ❌ Invalid: PATCH with bad ObjectId
+PATCH http://localhost:3000/api/material/invalid-object-id
+Content-Type: application/json
+
+{
+  "materialName": "NewName"
+}

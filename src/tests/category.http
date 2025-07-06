@@ -1,0 +1,157 @@
+### ✅ Valid: POST a new category
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+  "categoryName": "Pet Toys",
+  "parentCategoryId": "680ba5db52e68193ebf8246f"
+}
+
+###
+
+### ✅ Valid: GET all categories
+GET http://localhost:3000/api/categories
+Content-Type: application/json
+
+###
+
+### ❌ Invalid: POST with categoryName as number
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+  "categoryName": 123,
+  "parentCategoryId": null
+}
+
+###
+
+### ❌ Invalid: POST with categoryName as boolean
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+  "categoryName": true,
+  "parentCategoryId": null
+}
+
+###
+
+### ❌ Invalid: POST with empty categoryName string
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+  "categoryName": "",
+  "parentCategoryId": null
+}
+
+###
+
+### ❌ Invalid: POST with short categoryName (less than 3 characters)
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+  "categoryName": "El",
+  "parentCategoryId": null
+}
+
+###
+
+### ❌ Invalid: POST with missing categoryName
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+  "parentCategoryId": null
+}
+
+###
+
+### ❌ Invalid: POST with extra unexpected field
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+
+{
+  "categoryName": "Computers",
+  "parentCategoryId": null,
+  "extraField": "not allowed"
+}
+
+###
+
+### ✅ Valid: GET single category by ID
+GET http://localhost:3000/api/categories/660cba4f168aa20a78a12345
+Content-Type: application/json
+
+###
+
+### ❌ Invalid: GET with malformed ObjectId
+GET http://localhost:3000/api/categories/invalid-id
+Content-Type: application/json
+
+###
+
+### ✅ Valid: PATCH category by ID
+PATCH http://localhost:3000/api/categories/680ba5db52e68193ebf8246f
+Content-Type: application/json
+
+{
+  "categoryName": "Updated Electronics",
+  "parentCategoryId" : "680ba5db52e68193ebf8246f"
+}
+
+###
+
+### ❌ Invalid: PATCH with too short name
+PATCH http://localhost:3000/api/categories/660cba4f168aa20a78a12345
+Content-Type: application/json
+
+{
+  "categoryName": "AB"
+}
+
+###
+
+### ❌ Invalid: PATCH with missing categoryName
+PATCH http://localhost:3000/api/categories/660cba4f168aa20a78a12345
+Content-Type: application/json
+
+{
+}
+
+###
+
+### ❌ Invalid: PATCH with malformed JSON
+PATCH http://localhost:3000/api/categories/660cba4f168aa20a78a12345
+Content-Type: application/json
+
+{
+  "categoryName": "Phones"
+  // missing comma
+}
+
+###
+
+### ❌ Invalid: PATCH with bad ObjectId
+PATCH http://localhost:3000/api/categories/invalid-object-id
+Content-Type: application/json
+
+{
+  "categoryName": "Smartphones"
+}
+
+###
+
+### ✅ Valid: DELETE category by ID
+DELETE http://localhost:3000/api/categories/680b534152e68193ebf82464
+Content-Type: application/json
+
+###
+
+### ❌ Invalid: DELETE category with malformed ID
+DELETE http://localhost:3000/api/categories/invalid-object-id
+Content-Type: application/json
+
+###

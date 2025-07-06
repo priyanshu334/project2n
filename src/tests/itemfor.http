@@ -1,0 +1,134 @@
+### ✅ Valid: POST a new itemFor
+POST http://localhost:3000/api/itemFor
+Content-Type: application/json
+
+{
+  "itemForName": "Garden Gagets"
+}
+
+###
+
+### ✅ Valid: GET all itemFor
+GET http://localhost:3000/api/itemFor
+Content-Type: application/json
+
+###
+
+### ❌ Invalid: POST with itemForName as number
+POST http://localhost:3000/api/itemFor
+Content-Type: application/json
+
+{
+  "itemForName": 123
+}
+
+###
+
+### ❌ Invalid: POST with itemForName as boolean
+POST http://localhost:3000/api/itemFor
+Content-Type: application/json
+
+{
+  "itemForName": true
+}
+
+###
+
+### ❌ Invalid: POST with empty string
+POST http://localhost:3000/api/itemFor
+Content-Type: application/json
+
+{
+  "itemForName": ""
+}
+
+###
+
+### ❌ Invalid: POST with short itemForName (less than 3 characters)
+POST http://localhost:3000/api/itemFor
+Content-Type: application/json
+
+{
+  "itemForName": "Hi"
+}
+
+###
+
+### ❌ Invalid: POST with missing field
+POST http://localhost:3000/api/itemFor
+Content-Type: application/json
+
+{}
+
+###
+
+### ❌ Invalid: POST with extra unexpected field
+POST http://localhost:3000/api/itemFor
+Content-Type: application/json
+
+{
+  "itemForName": "Kitchen",
+  "extraField": "NotAllowed"
+}
+
+###
+
+### ✅ Valid: DELETE itemFor by ID
+DELETE http://localhost:3000/api/itemFor/680a1de6d705961604624f94
+Content-Type: application/json
+
+###
+
+### ❌ Invalid: DELETE itemFor with non-existing or malformed ID
+DELETE http://localhost:3000/api/itemFor/invalid-id
+Content-Type: application/json
+
+###
+
+### ✅ Valid: PATCH itemFor by ID
+PATCH http://localhost:3000/api/itemFor/680a1de6d705961604624f94
+Content-Type: application/json
+
+{
+  "itemForName": "Electronics"
+}
+
+###
+
+### ❌ Invalid: PATCH with too short name
+PATCH http://localhost:3000/api/itemFor/680a1de6d705961604624f94
+Content-Type: application/json
+
+{
+  "itemForName": "AB"
+}
+
+###
+
+### ❌ Invalid: PATCH with missing itemForName
+PATCH http://localhost:3000/api/itemFor/680a1de6d705961604624f94
+Content-Type: application/json
+
+{
+}
+
+###
+
+### ❌ Invalid: PATCH with malformed JSON
+PATCH http://localhost:3000/api/itemFor/680a1de6d705961604624f94
+Content-Type: application/json
+
+{
+  "itemForName": "Office"
+  // missing comma or extra text
+}
+
+###
+
+### ❌ Invalid: PATCH with bad ObjectId
+PATCH http://localhost:3000/api/itemFor/invalid-object-id
+Content-Type: application/json
+
+{
+  "itemForName": "Outdoor"
+}
